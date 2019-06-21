@@ -39,7 +39,6 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
 
     private MovieAdapter mMovieAdapter;
     private Movie[] mMovieData;
-    private String mQueryCategory = "popular";
 
 
     @Override
@@ -56,7 +55,7 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
         mDisplayMovieRecycleView.setHasFixedSize(true);
         mDisplayMovieRecycleView.setAdapter(mMovieAdapter);
 
-        loadMovieData();
+        loadMovieData("popular");
     }
 
     public static int calculateNoOfColumns(Context context) {
@@ -66,10 +65,9 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
         return noOfColumns;
     }
 
-    private void loadMovieData() {
-        String theMovieDbQueryType = mQueryCategory;
+    private void loadMovieData(String mQueryCategory ) {
         showResult();
-        new FetchMovieTask().execute(theMovieDbQueryType);
+        new FetchMovieTask().execute(mQueryCategory);
     }
 
     private void showResult() {
@@ -152,14 +150,12 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
         int menuItemSelected = item.getItemId();
 
         if (menuItemSelected == R.id.action_most_popular) {
-            mQueryCategory = "popular";
-            loadMovieData();
+            loadMovieData("popular");
             return true;
         }
 
         if (menuItemSelected == R.id.action_top_rated) {
-            mQueryCategory = "top_rated";
-            loadMovieData();
+            loadMovieData("top_rated");
             return true;
         }
 
