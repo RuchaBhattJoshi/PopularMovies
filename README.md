@@ -20,3 +20,9 @@ This repository contains code for the Popular movies android app which is the se
 * Android Support Libraries
 * [Picasso](https://github.com/square/picasso)
 * [Butterknife](https://github.com/JakeWharton/butterknife)
+
+
+![popularmovie_1](https://user-images.githubusercontent.com/42872628/59980182-0200bf00-95ea-11e9-87c6-4fe1392b3fb0.png)
+![popularmovie_2](https://user-images.githubusercontent.com/42872628/59980185-075e0980-95ea-11e9-8c44-f77a9d0ffc76.png)
+![popularmovie_3](https://user-images.githubusercontent.com/42872628/59980187-09c06380-95ea-11e9-8ecc-8c8865bc2061.png)
+![popularmovie_4](https://user-images.githubusercontent.com/42872628/59980188-0af19080-95ea-11e9-9100-a6379ba264d7.png)
