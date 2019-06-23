@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.ruchajoshi.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -42,25 +43,30 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         if(getIntent().getExtras() != null){
-            String poster = getIntent().getStringExtra("poster");
+
+
+            /*String poster = getIntent().getStringExtra("poster");
             String title = getIntent().getStringExtra("title");
             String rate = getIntent().getStringExtra("user_rate");
             String release = getIntent().getStringExtra("release_date");
-            String overview = getIntent().getStringExtra("overview");
+            String overview = getIntent().getStringExtra("overview");*/
 
-            mMovieTitle.setText(title);
-            mMovieOverView.setText(overview);
-            mMovieUserRating.setText(rate + "/10");
-            mMovieReleseDate.setText(release);
+
+            Movie movieData= getIntent().getParcelableExtra("MovieData");
+
+            mMovieTitle.setText(movieData.getMovieTitle());
+            mMovieOverView.setText(movieData.getMovieOverview());
+            mMovieUserRating.setText(movieData.getMovieUserRating() + "/10");
+            mMovieReleseDate.setText(movieData.getMovieReleaseDate());
 
             Picasso.get()
-                    .load(poster)
+                    .load(movieData.getMoviePoster())
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .into(mMovieCover);
 
             Picasso.get()
-                    .load(poster)
+                    .load(movieData.getMoviePoster())
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
                     .into(mMoviePoster);

@@ -1,6 +1,9 @@
 package com.ruchajoshi.popularmovies.model;
 
-public class Movie {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Movie implements Parcelable {
 
     private String movieTitle;
     private String moviePoster;
@@ -11,6 +14,26 @@ public class Movie {
     public Movie() {
 
     }
+
+    protected Movie(Parcel in) {
+        movieTitle = in.readString();
+        moviePoster = in.readString();
+        movieReleaseDate = in.readString();
+        movieUserRating = in.readString();
+        movieOverview = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public String getMovieTitle() {
         return movieTitle;
@@ -52,4 +75,17 @@ public class Movie {
         this.movieOverview = movieOverview;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(movieTitle);
+        parcel.writeString(moviePoster);
+        parcel.writeString(movieReleaseDate);
+        parcel.writeString(movieUserRating);
+        parcel.writeString(movieOverview);
+    }
 }

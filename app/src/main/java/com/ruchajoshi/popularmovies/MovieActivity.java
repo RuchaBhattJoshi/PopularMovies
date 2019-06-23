@@ -2,6 +2,8 @@ package com.ruchajoshi.popularmovies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -66,8 +68,20 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
     }
 
     private void loadMovieData(String mQueryCategory ) {
-        showResult();
-        new FetchMovieTask().execute(mQueryCategory);
+        if(isInternetAvailable()){
+            showResult();
+            new FetchMovieTask().execute(mQueryCategory);
+        }
+        else{
+            showErrorMessage();
+        }
+    }
+
+    public boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        return activeNetwork != null
+                && activeNetwork.isConnectedOrConnecting();
     }
 
     private void showResult() {
@@ -124,16 +138,13 @@ public class MovieActivity extends AppCompatActivity implements MovieAdapter.Mov
     @Override
     public void onClick(int adapterPosition) {
         Intent intentToDeatilActivity = new Intent(this, DetailActivity.class);
-        intentToDeatilActivity.putExtra(Intent.EXTRA_TEXT, adapterPosition);
-        intentToDeatilActivity.putExtra("title", mMovieData[adapterPosition].getMovieTitle());
-        intentToDeatilActivity.putExtra("poster", mMovieData[adapterPosition].getMoviePoster());
-        intentToDeatilActivity.putExtra("user_rate", mMovieData[adapterPosition].getMovieUserRating());
-        intentToDeatilActivity.putExtra("release_date", mMovieData[adapterPosition].getMovieReleaseDate());
-        intentToDeatilActivity.putExtra("overview", mMovieData[adapterPosition].getMovieOverview());
-
-        Log.d("mposter","poster"+mMovieData[adapterPosition].getMoviePoster());
-        Log.d("mposition","pos"+mMovieData[adapterPosition]);
-
+       // intentToDeatilActivity.putExtra(Intent.EXTRA_TEXT, adapterPosition);
+       // intentToDeatilActivity.putExtra("title", mMovieData[adapterPosition].getMovieTitle());
+       // intentToDeatilActivity.putExtra("poster", mMovieData[adapterPosition].getMoviePoster());
+       // intentToDeatilActivity.putExtra("user_rate", mMovieData[adapterPosition].getMovieUserRating());
+       // intentToDeatilActivity.putExtra("release_date", mMovieData[adapterPosition].getMovieReleaseDate());
+        //intentToDeatilActivity.putExtra("overview", mMovieData[adapterPosition].getMovieOverview());
+        intentToDeatilActivity.putExtra("MovieData", mMovieData[adapterPosition]);
         startActivity(intentToDeatilActivity);
 
     }

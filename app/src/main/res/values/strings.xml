@@ -4,7 +4,7 @@
 
     <!-- MOVIE LIST -->
     <string name="image_description">Movie poster</string>
-    <string name="empty_view_message">Something went wrong!! There are no movies to show :(</string>
+    <string name="empty_view_message">Something went wrong!!\nThere are no movies to show :(</string>
 
     <!-- MOVIE MENU -->
     <string name="most_popular">Most Popular</string>
